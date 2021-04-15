@@ -12,7 +12,7 @@ router.options('healthPreflight', '/health', async (ctx) => {
   ctx.set('Access-Control-Allow-Credentials', true);
 	ctx.response.status = 200;
 })
-router.post('health', '/health', async (ctx) => {
+router.get('health', '/health', async (ctx) => {
   ctx.response.body = 'OK';
   ctx.response.status = 200;
   ctx.set('Access-Control-Allow-Origin', ctx.request.header.referer || ctx.request.header.origin);
