@@ -19,8 +19,5 @@ router.post('health', '/health', async (ctx) => {
   ctx.set('Access-Control-Allow-Credentials', 'true');
 })
 app.use(router.routes())
-.use(router.allowedMethods())
-.use(cors({
-  credentials: true,
-  exposeHeaders: ['Access-Control-Allow-Credentials', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Origin', 'Set-Cookie', 'X-Forwarded-Proto']
-})).listen(8500, () => console.log('Running on port 8500'));
+  .use(router.allowedMethods())
+  .listen(8500, () => console.log('Running on port 8500'));
