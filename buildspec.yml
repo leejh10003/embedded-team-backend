@@ -6,11 +6,12 @@ phases:
     on-failure: ABORT
     commands:
       - cd ${CODEBUILD_SRC_DIR}
-      - ls -al
+      - cd ..
     finally:
-      - zip embedded-team-backend.zip ./embedded-team-backend/*
+      - ls -al
+      - zip embedded-team-backend.zip ./src/*
 artifacts:
   files:
-    - ./embedded-team-backend.zip
+    - ${CODEBUILD_SRC_DIR}/../embedded-team-backend.zip
   name: artifact-name
   exclude-paths: excluded paths
