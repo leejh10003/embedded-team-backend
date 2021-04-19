@@ -6,6 +6,7 @@ phases:
     on-failure: ABORT
     commands:
       - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - source /root/.bashrc
       - nvm install 14.16.1
       - cd ${CODEBUILD_SRC_DIR}
       - ls -al
