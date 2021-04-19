@@ -16,4 +16,4 @@ artifacts:
     - ${CODEBUILD_SRC_DIR}/../embedded-team-backend.zip
     - ${CODEBUILD_SRC_DIR}/../appspec.yml
   name: artifact-name
-  exclude-paths: excluded paths
+  exclude-paths: true
