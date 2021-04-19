@@ -5,15 +5,8 @@ phases:
     run-as: root
     on-failure: ABORT
     commands:
-      - ps -p $$
-      # - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-      # - . /root/.bashrc
-      # - nvm install 14.16.1
-      # - cd ${CODEBUILD_SRC_DIR}
-      # - ls -al
-      # - npm install -g yarn
-      # - yarn install
-      # - cd ..
+      - cd ${CODEBUILD_SRC_DIR}
+      - ls -al
     finally:
       - zip embedded-team-backend.zip ./embedded-team-backend/*
 artifacts:
