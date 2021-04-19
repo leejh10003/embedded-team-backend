@@ -3,10 +3,12 @@ os: linux
 files:
   - source: ./embedded-team-backend.zip
     destination: /home/ubuntu
-  - source: ./build.sh
-    destination: /home/ubuntu
 hooks:
+  BeforeInstall: 
+    - location: ./before.sh
+      timeout: 300
+      runas: ubuntu
   AfterInstall:
-    - location: /home/ubuntu/build.sh
+    - location: ./build.sh
       timeout: 300
       runas: ubuntu
