@@ -7,11 +7,15 @@ phases:
     commands:
       - cd ${CODEBUILD_SRC_DIR}
       - mv appspec.yml /
+      - mv build.sh /
+      - mv before.sh /
     finally:
       - zip /embedded-team-backend.zip ./*
 artifacts:
   files:
     - /embedded-team-backend.zip
     - /appspec.yml
+    - /build.sh
+    - /before.sh
   name: artifact-name
   exclude-paths: true
