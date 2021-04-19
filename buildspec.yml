@@ -10,6 +10,7 @@ phases:
       - cd ..
     finally:
       - ls -al
+      - cwd
       - zip embedded-team-backend.zip ./src/*
 artifacts:
   files:
