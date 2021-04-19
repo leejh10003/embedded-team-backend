@@ -5,6 +5,7 @@ phases:
     run-as: root
     on-failure: ABORT
     commands:
+      - /bin/bash
       - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
       - . /root/.bashrc
       - nvm install 14.16.1
