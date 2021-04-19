@@ -13,7 +13,7 @@ router.options('healthPreflight', '/health', async (ctx) => {
 	ctx.response.status = 200;
 })
 router.get('health', '/health', async (ctx) => {
-  ctx.response.body = 'OK';
+  ctx.response.body = 'TEST RE DEPLOY';
   ctx.response.status = 200;
   ctx.set('Access-Control-Allow-Origin', ctx.request.header.referer || ctx.request.header.origin);
   ctx.set('Access-Control-Allow-Credentials', true);
