@@ -7,3 +7,4 @@ rm embedded-team-backend.zip
 \. ~/.bashrc
 nvm use 14.16.1
 yarn install
+pm2 restart index.js
