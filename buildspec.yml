@@ -1,0 +1,20 @@
+version: 0.2
+run-as: root
+phases:
+  build:
+    run-as: root
+    on-failure: ABORT
+    commands:
+      - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - nvm install 14.16.1
+      - cd embedded-team-backend
+      - npm install -g yarn
+      - yarn install
+      - cd ..
+    finally:
+      - zip embedded-team-backend.zip ./embedded-team-backend/*
+artifacts:
+  files:
+    - ./embedded-team-backend.zip
+  name: artifact-name
+  exclude-paths: excluded paths
