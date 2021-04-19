@@ -2,4 +2,4 @@
 cd /home/ubuntu &&
 unzip embedded-team-backend.zip &&
 rm embedded-team-backend.zip &&
-yarn install
+/home/ubuntu/.nvm/versions/node/v14.16.1/bin/yarn install
