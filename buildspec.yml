@@ -5,10 +5,10 @@ phases:
     run-as: root
     on-failure: ABORT
     commands:
-      - chsh -s /bin/bash
-      - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-      - . /root/.bashrc
-      - nvm install 14.16.1
+      - echo $SHELL
+      # - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      # - . /root/.bashrc
+      # - nvm install 14.16.1
       # - cd ${CODEBUILD_SRC_DIR}
       # - ls -al
       # - npm install -g yarn
