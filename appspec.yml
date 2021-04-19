@@ -1,0 +1,5 @@
+version: 0.0
+os: linux
+files:
+  - source: ./embedded-team-backend.zip
+    destination: /home/ubuntu
