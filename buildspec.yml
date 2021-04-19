@@ -6,15 +6,13 @@ phases:
     on-failure: ABORT
     commands:
       - cd ${CODEBUILD_SRC_DIR}
-      - mv appspec.yml ../
-      - cd ..
+      - mv appspec.yml /
+      - zip /embedded-team-backend.zip ./*
     finally:
-      - ls -al
-      - cwd
-      - zip embedded-team-backend.zip ./src/*
+      - mv em
 artifacts:
   files:
-    - ${CODEBUILD_SRC_DIR}/../embedded-team-backend.zip
-    - ${CODEBUILD_SRC_DIR}/../appspec.yml
+    - /embedded-team-backend.zip
+    - /appspec.yml
   name: artifact-name
   exclude-paths: true
