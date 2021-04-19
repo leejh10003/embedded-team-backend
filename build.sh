@@ -1,4 +1,5 @@
 #!/bin/sh
 cd /home/ubuntu
-rm -rf node_modules
-rm ./*
+unzip embedded-team-backend.zip
+rm embedded-team-backend.zip
+yarn install
