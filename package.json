@@ -5,8 +5,14 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/vision": "^2.3.1",
+    "@koa/multer": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "image-size": "^1.0.0",
+    "jimp": "^0.16.1",
+    "jsqr": "^1.4.0",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
-    "koa-router": "^10.0.0"
+    "koa-router": "^10.0.0",
+    "multer": "^1.4.2"
   }
 }
