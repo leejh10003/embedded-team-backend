@@ -83,7 +83,8 @@ router.post('food', '/food', upload.fields([{
       ctx.response.body = {
         success: true,
         name,
-        count: most
+        count: most,
+        max_availability: 10
       }
     } else {
       throw new Error('file not provided')
