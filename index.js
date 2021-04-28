@@ -31,46 +31,67 @@ router.get('health', '/health', async (ctx) => {
 router.post('qrcode', '/qrcode', upload.fields([{
   name: 'file'
 }]), async ctx => {
-  if (!!(ctx.request.files) && (ctx.request.files.file.length > 0)){
-    const content = ctx.request.files.file[0].buffer
-    const image = await Jimp.read(content)
-    const pixels = new Uint8ClampedArray(image.bitmap.data)
-    
-    const code = jsQR(pixels, image.bitmap.width, image.bitmap.height);
+  try {
+    if (!!(ctx.request.files) && (ctx.request.files.file.length > 0)){
+      const content = ctx.request.files.file[0].buffer
+      const image = await Jimp.read(content)
+      const pixels = new Uint8ClampedArray(image.bitmap.data)
+      
+      const code = jsQR(pixels, image.bitmap.width, image.bitmap.height);
+      ctx.response.body = {
+        success: true,
+        data: code.data
+      }
+    } else {
+      throw new Error('file not provided')
+    }
+  } catch (e){
+    ctx.response.status = 503
     ctx.response.body = {
-      data: code.data
+      success: false,
+      reason: e.message
     }
   }
 })
 router.post('food', '/food', upload.fields([{
   name: 'file'
 }]), async (ctx) => {
-  if (!!(ctx.request.files) && (ctx.request.files.file.length > 0)){
-    const content = ctx.request.files.file[0].buffer.toString('base64')
-    const request = {
-      image: {content: content },
-    }
-    const [result] = await client.objectLocalization(request);
-    const objects = result.localizedObjectAnnotations;
-    const foods = {}
-    let most = 0;
-    let name = null;
-    objects.filter(object => object.score >= 0.5).forEach(object => {
-      if (!!(foods[object.name])){
-        foods[object.name] += 1
-      } else {
-        foods[object.name] = 1
+  try {
+    if (!!(ctx.request.files) && (ctx.request.files.file.length > 0)){
+      const content = ctx.request.files.file[0].buffer.toString('base64')
+      const request = {
+        image: {content: content },
       }
-    });
-    for (var key in foods){
-      if (foods[key] > most){
-        name = key
-        most = foods[key]
+      const [result] = await client.objectLocalization(request);
+      const objects = result.localizedObjectAnnotations;
+      const foods = {}
+      let most = 0;
+      let name = null;
+      objects.filter(object => object.score >= 0.5).forEach(object => {
+        if (!!(foods[object.name])){
+          foods[object.name] += 1
+        } else {
+          foods[object.name] = 1
+        }
+      });
+      for (var key in foods){
+        if (foods[key] > most){
+          name = key
+          most = foods[key]
+        }
       }
+      ctx.response.body = {
+        name,
+        count: most
+      }
+    } else {
+      throw new Error('file not provided')
     }
+  } catch (e){
+    ctx.response.status = 503
     ctx.response.body = {
-      name,
-      count: most
+      success: false,
+      reason: e.message
     }
   }
 })
