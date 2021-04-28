@@ -62,7 +62,6 @@ router.post('food', '/food', upload.fields([{
         foods[object.name] = 1
       }
     });
-    console.log(foods)
     for (var key in foods){
       if (foods[key] > most){
         name = key
