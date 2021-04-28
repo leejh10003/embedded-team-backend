@@ -81,6 +81,7 @@ router.post('food', '/food', upload.fields([{
         }
       }
       ctx.response.body = {
+        success: true,
         name,
         count: most
       }
