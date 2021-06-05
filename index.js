@@ -46,7 +46,8 @@ router.post('messaging', '/messaging', async(ctx) => {
     notification: {
       title: '트레이에 새로운 알림이 있습니다!',
       body: content
-    }
+    },
+    topic: 'TO_ALL_USER'
   })
   console.log(result)
   ctx.response.status = 200
