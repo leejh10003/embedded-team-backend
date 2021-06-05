@@ -40,7 +40,7 @@ router.get('health', '/health', async (ctx) => {
   ctx.set('Access-Control-Allow-Credentials', true);
 })
 router.post('messaging', '/messaging', async(ctx) => {
-  console.log(ctx.response.body)
+  console.log(ctx.request.body)
   ctx.response.status = 200
 })
 router.post('qrcode', '/qrcode', upload.fields([{
