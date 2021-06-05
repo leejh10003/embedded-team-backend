@@ -19,6 +19,12 @@ const s3 = new AWS.S3({
   accessKeyId: process.env.ACCESS_KEY_ID,
   secretAccessKey: process.env.SECRET_ACCESS_KEY
 });
+const cert = require(process.env.FIREBASE_APPLICATION_CREDENTIALS)
+var admin = require('firebase-admin');
+admin.initializeApp({
+    credential: admin.credential.cert(cert),
+})
+
 app.use(BodyParser());
 router.options('healthPreflight', '/health', async (ctx) => {
 	ctx.set('Access-Control-Allow-Origin', ctx.request.header.referer || ctx.request.header.origin);
@@ -32,6 +38,9 @@ router.get('health', '/health', async (ctx) => {
   ctx.response.status = 200;
   ctx.set('Access-Control-Allow-Origin', ctx.request.header.referer || ctx.request.header.origin);
   ctx.set('Access-Control-Allow-Credentials', true);
+})
+router.post('messaging', '/messaging', async(ctx) => {
+  console.log(ctx.response.body)
 })
 router.post('qrcode', '/qrcode', upload.fields([{
   name: 'file' 
