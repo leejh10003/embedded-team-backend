@@ -41,6 +41,7 @@ router.get('health', '/health', async (ctx) => {
 })
 router.post('messaging', '/messaging', async(ctx) => {
   console.log(ctx.response.body)
+  ctx.response.status = 200
 })
 router.post('qrcode', '/qrcode', upload.fields([{
   name: 'file' 
