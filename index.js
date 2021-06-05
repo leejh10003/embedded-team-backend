@@ -14,6 +14,11 @@ const upload = multer({
 });
 app.proxy = true;
 const router = new KoaRouter();
+const AWS = require("aws-sdk");
+const s3 = new AWS.S3({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY
+});
 app.use(BodyParser());
 router.options('healthPreflight', '/health', async (ctx) => {
 	ctx.set('Access-Control-Allow-Origin', ctx.request.header.referer || ctx.request.header.origin);
@@ -80,6 +85,13 @@ router.post('food', '/food', upload.fields([{
           most = foods[key]
         }
       }
+      const fileFromBUffer = await FileType.fromBuffer(ctx.request.files.file[0].buffer);
+      const uploadResults = await s3.upload({
+        Bucket: process.env.S3_BUCKET_NAME,
+        ACL: 'public-read',
+        Body: ctx.request.files.file[0].buffer,
+        Key: `profile/${userId}/${Date.now()}.${fileFromBUffer.ext}`
+      }).promise();
       ctx.response.body = {
         success: true,
         name,

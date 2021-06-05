@@ -6,7 +6,9 @@
   "dependencies": {
     "@google-cloud/vision": "^2.3.1",
     "@koa/multer": "^3.0.0",
+    "aws-sdk": "^2.922.0",
     "dotenv": "^8.2.0",
+    "file-type": "^16.5.0",
     "image-size": "^1.0.0",
     "jimp": "^0.16.1",
     "jsqr": "^1.4.0",
