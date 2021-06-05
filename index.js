@@ -90,7 +90,7 @@ router.post('food', '/food', upload.fields([{
         Bucket: process.env.S3_BUCKET_NAME,
         ACL: 'public-read',
         Body: ctx.request.files.file[0].buffer,
-        Key: `profile/${userId}/${Date.now()}.${fileFromBUffer.ext}`
+        Key: `${Date.now()}.${fileFromBUffer.ext}`
       }).promise();
       ctx.response.body = {
         success: true,
