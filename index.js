@@ -96,7 +96,7 @@ router.post('food', '/food', upload.fields([{
         success: true,
         name, // name: name,
         count: most,
-        key: uploadResults.Key,
+        key: `https://embedded-sensor-images.s3.ap-northeast-2.amazonaws.com/${uploadResults.Key}`,
         max_availability: 10 // 식품 유효기간? 유통기한
       }
     } else {
