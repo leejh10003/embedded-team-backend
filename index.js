@@ -40,7 +40,15 @@ router.get('health', '/health', async (ctx) => {
   ctx.set('Access-Control-Allow-Credentials', true);
 })
 router.post('messaging', '/messaging', async(ctx) => {
-  console.log(ctx.request.body)
+  const { event: { data: { new : { content } } } } = ctx.request.body
+  console.log(content)
+  const result = await admin.messaging().send({
+    notification: {
+      title: '트레이에 새로운 알림이 있습니다!',
+      body: content
+    }
+  })
+  console.log(result)
   ctx.response.status = 200
 })
 router.post('qrcode', '/qrcode', upload.fields([{
