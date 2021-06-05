@@ -7,6 +7,7 @@ const vision = require('@google-cloud/vision'); //Import google cloud vision mod
 const multer = require("@koa/multer"); //Koa multer multipart upload extension
 const jsQR = require("jsqr"); //Pure javascript QR code decode module
 const client = new vision.ImageAnnotatorClient(); //구글에 요청보낼 때 사용
+const FileType = require('file-type');
 const Jimp = require('jimp');//For jsqr, have to handle image
 const upload = multer({
     storage: multer.memoryStorage()
@@ -95,6 +96,7 @@ router.post('food', '/food', upload.fields([{
         success: true,
         name, // name: name,
         count: most,
+        key: uploadResults.Key,
         max_availability: 10 // 식품 유효기간? 유통기한
       }
     } else {
